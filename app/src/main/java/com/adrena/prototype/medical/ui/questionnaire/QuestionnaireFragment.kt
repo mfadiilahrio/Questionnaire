@@ -2,6 +2,7 @@ package com.adrena.prototype.medical.ui.questionnaire
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,7 +38,23 @@ class QuestionnaireFragment : Fragment(), ItemListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_done -> {
-            listener?.onStopQuestioner(Questionnaire(questionnaire.name, adapter.list))
+            val notCompleted = adapter.list.any { q ->
+                q.options.none { it.checked }
+            }
+
+            if (notCompleted) {
+                context?.let {
+                    AlertDialog.Builder(it).apply {
+                        setTitle(getString(R.string.information))
+                        setMessage(getString(R.string.complete_all_questionnaire))
+                        setPositiveButton(getString(R.string.ok)) { _, _ ->
+
+                        }
+                    }.show()
+                }
+            } else {
+                listener?.onStopQuestioner(Questionnaire(questionnaire.name, adapter.list))
+            }
             true
         }
         else -> super.onOptionsItemSelected(item)

@@ -36,4 +36,6 @@
     <string name="bmi_x">BMI : %.2f</string>
     <string name="high">Tinggi</string>
     <string name="low">Rendah</string>
+    <string name="date_format">dd-MMMM-yyyy</string>
+    <string name="complete_all_questionnaire">Mohon selesaikan semua kuesioner !</string>
 </resources>

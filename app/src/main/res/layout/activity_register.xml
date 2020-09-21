@@ -2,9 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
@@ -19,25 +19,25 @@
             android:id="@+id/registration_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
             android:layout_marginTop="50dp"
+            android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/form_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/view_item_margin"
             android:layout_marginHorizontal="@dimen/view_item_margin"
+            android:layout_marginTop="@dimen/view_item_margin"
+            android:gravity="center_horizontal"
+            android:text="@string/registration_form"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/registration_icon"
-            android:textAlignment="center"
-            android:text="@string/registration_form"
-            android:gravity="center_horizontal" />
+            app:layout_constraintTop_toBottomOf="@id/registration_icon" />
 
         <EditText
             android:id="@+id/name"
@@ -45,8 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/view_item_margin"
             android:layout_marginTop="30dp"
-            android:inputType="textPersonName"
             android:hint="@string/name"
+            android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/form_title" />
@@ -55,35 +55,37 @@
             android:id="@+id/gender_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:layout_marginTop="@dimen/view_item_margin"
+            android:text="@string/gender"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            android:text="@string/gender"/>
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <RadioGroup
             android:id="@id/gender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
-            app:layout_constraintTop_toBottomOf="@+id/gender_title"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toBottomOf="@+id/gender_title">
 
-            <RadioButton android:id="@+id/male"
+            <RadioButton
+                android:id="@+id/male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/male"
                 android:checked="true"
-                android:onClick="onRadioButtonClicked"/>
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/male" />
 
-            <RadioButton android:id="@+id/female"
+            <RadioButton
+                android:id="@+id/female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/female"
-                android:onClick="onRadioButtonClicked"/>
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/female" />
 
         </RadioGroup>
 
@@ -92,9 +94,9 @@
             android:id="@+id/age"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
             android:hint="@string/age"
             android:inputType="number"
-            android:layout_marginTop="@dimen/view_item_margin"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/gender" />
@@ -103,9 +105,9 @@
             android:id="@+id/birth_place"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
             android:hint="@string/birth_place"
             android:inputType="text"
-            android:layout_marginTop="@dimen/view_item_margin"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/age" />
@@ -114,9 +116,11 @@
             android:id="@+id/dob"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
             android:hint="@string/dob"
             android:inputType="date"
-            android:layout_marginTop="@dimen/view_item_margin"
+            android:focusable="false"
+            android:cursorVisible="false"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/birth_place" />
@@ -125,9 +129,9 @@
             android:id="@+id/address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
             android:hint="@string/address"
             android:inputType="textMultiLine"
-            android:layout_marginTop="@dimen/view_item_margin"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/dob" />
@@ -136,9 +140,9 @@
             android:id="@+id/weight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
             android:hint="@string/body_weight"
             android:inputType="number"
-            android:layout_marginTop="@dimen/view_item_margin"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/address" />
@@ -147,9 +151,9 @@
             android:id="@+id/height"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
             android:hint="@string/body_height"
             android:inputType="number"
-            android:layout_marginTop="@dimen/view_item_margin"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/weight" />
@@ -158,19 +162,20 @@
             android:id="@+id/neck_circumference"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
             android:hint="@string/neck_circumference"
             android:inputType="number"
-            android:layout_marginTop="@dimen/view_item_margin"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/height" />
 
         <Button
             android:id="@+id/register"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/registration"
             android:layout_marginTop="@dimen/view_item_margin"
+            android:text="@string/registration"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"

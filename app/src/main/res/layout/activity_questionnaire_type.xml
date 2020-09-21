@@ -9,45 +9,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/view_item_margin"
-        android:paddingBottom="120dp"
         android:background="@android:color/white"
+        android:paddingBottom="120dp"
         tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/questionnaire_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="120dp"
             android:layout_marginHorizontal="@dimen/view_item_margin"
+            android:layout_marginTop="120dp"
+            android:gravity="center_horizontal"
             android:text="@string/choose_questionnaire"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:gravity="center_horizontal" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/sleep_quality_questionnaire"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/questionnaire_title"
-            app:layout_constraintStart_toStartOf="@id/questionnaire_title"
-            app:layout_constraintEnd_toEndOf="@id/questionnaire_title"
-            android:layout_marginTop="@dimen/view_item_margin"
             android:layout_marginHorizontal="@dimen/view_item_margin"
-            android:text="@string/sleep_quality_questionnaire"/>
+            android:layout_marginTop="@dimen/view_item_margin"
+            android:text="@string/sleep_quality_questionnaire"
+            app:layout_constraintEnd_toEndOf="@id/questionnaire_title"
+            app:layout_constraintStart_toStartOf="@id/questionnaire_title"
+            app:layout_constraintTop_toBottomOf="@id/questionnaire_title" />
 
         <Button
             android:id="@+id/berlin_questionnaire"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/sleep_quality_questionnaire"
-            app:layout_constraintStart_toStartOf="@id/questionnaire_title"
-            app:layout_constraintEnd_toEndOf="@id/questionnaire_title"
-            android:layout_marginTop="@dimen/view_item_margin"
             android:layout_marginHorizontal="@dimen/view_item_margin"
-            android:text="@string/berlin_questionnaire"/>
+            android:layout_marginTop="@dimen/view_item_margin"
+            android:text="@string/berlin_questionnaire"
+            app:layout_constraintEnd_toEndOf="@id/questionnaire_title"
+            app:layout_constraintStart_toStartOf="@id/questionnaire_title"
+            app:layout_constraintTop_toBottomOf="@id/sleep_quality_questionnaire" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
