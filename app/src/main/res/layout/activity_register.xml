@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_item_margin"
+        android:background="@android:color/white"
+        android:paddingBottom="90dp"
+        tools:context=".ui.register.RegisterActivity">
+
+        <ImageView
+            android:id="@+id/registration_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/form_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_item_margin"
+            android:layout_marginHorizontal="@dimen/view_item_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/registration_icon"
+            android:textAlignment="center"
+            android:text="@string/registration_form"
+            android:gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/view_item_margin"
+            android:layout_marginTop="30dp"
+            android:inputType="textPersonName"
+            android:hint="@string/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_title" />
+
+        <TextView
+            android:id="@+id/gender_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            android:text="@string/gender"/>
+
+        <RadioGroup
+            android:id="@id/gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/gender_title"
+            android:orientation="horizontal">
+
+            <RadioButton android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/male"
+                android:checked="true"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/female"
+                android:onClick="onRadioButtonClicked"/>
+
+        </RadioGroup>
+
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/age"
+            android:inputType="number"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/gender" />
+
+        <EditText
+            android:id="@+id/birth_place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/birth_place"
+            android:inputType="text"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/age" />
+
+        <EditText
+            android:id="@+id/dob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/dob"
+            android:inputType="date"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/birth_place" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/dob" />
+
+        <EditText
+            android:id="@+id/weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/body_weight"
+            android:inputType="number"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/address" />
+
+        <EditText
+            android:id="@+id/height"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/body_height"
+            android:inputType="number"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/weight" />
+
+        <EditText
+            android:id="@+id/neck_circumference"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/neck_circumference"
+            android:inputType="number"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/height" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/registration"
+            android:layout_marginTop="@dimen/view_item_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@+id/neck_circumference" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

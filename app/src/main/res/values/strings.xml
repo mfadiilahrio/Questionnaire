@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Pemeriksaan</string>
+    <string name="sleep_quality_questionnaire">Kuesioner Kualitas Tidur (PSQI)</string>
+    <string name="berlin_questionnaire">Kuesioner Berlin</string>
+    <string name="choose_questionnaire">Pilih jenis kuesioner</string>
+    <string name="questionnaire_type">Jenis kuesioner</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="male">Laki - laki</string>
+    <string name="female">Perempuan</string>
+    <string name="name">Nama</string>
+    <string name="gender">Jenis kelamin</string>
+    <string name="age">Umur</string>
+    <string name="birth_place">Tempat lahir</string>
+    <string name="dob">Tanggal lahir</string>
+    <string name="address">Alamat</string>
+    <string name="body_weight">Berat badan (kg)</string>
+    <string name="body_height">Tinggi badan (cm)</string>
+    <string name="neck_circumference">Lingkar leher (cm)</string>
+    <string name="registration_form">Form Registerasi</string>
+    <string name="registration">Register</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="done">Selesai</string>
+</resources>
