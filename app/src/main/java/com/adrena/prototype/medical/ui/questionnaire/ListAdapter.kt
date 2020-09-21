@@ -53,24 +53,28 @@ class QuestionViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 
     fun bind(question: Question) {
-        mQuestion?.text = question.question
+        mQuestion?.text = "${question.number}. ${question.question}"
 
-        if (question.createOption) {
-            question.options.forEach {
-                val radioButton = RadioButton(itemView.context)
-                radioButton.layoutParams = LinearLayout.LayoutParams(
+        mOptions?.removeAllViews()
+
+        question.options.forEach {
+            val radioButton = RadioButton(itemView.context).apply {
+                layoutParams = LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
-                radioButton.text = it.answer
-                radioButton.setOnClickListener { _ ->
+                text = it.answer
+                tag = it.answer
+                isChecked = it.checked
+
+                setOnClickListener { _ ->
                     listener?.onOptionClicked(question, it)
                 }
-
-                mOptions?.addView(
-                    radioButton
-                )
             }
+
+            mOptions?.addView(
+                radioButton
+            )
         }
     }
 

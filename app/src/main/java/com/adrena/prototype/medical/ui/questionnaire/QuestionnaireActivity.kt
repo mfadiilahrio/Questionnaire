@@ -6,13 +6,17 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.adrena.prototype.medical.Constants.Companion.DATA
+import com.adrena.prototype.medical.Constants.Companion.USER
 import com.adrena.prototype.medical.R
-import com.adrena.prototype.medical.data.model.Question
+import com.adrena.prototype.medical.data.model.Questionnaire
+import com.adrena.prototype.medical.data.model.User
 import com.adrena.prototype.medical.ui.result.ResultActivity
 
 class QuestionnaireActivity : AppCompatActivity(), QuestionnaireFragment.Listener {
 
     private lateinit var mFragment: QuestionnaireFragment
+    private lateinit var user: User
+    private lateinit var questionnaire: Questionnaire
 
     private val layoutResId: Int
         @LayoutRes
@@ -23,13 +27,17 @@ class QuestionnaireActivity : AppCompatActivity(), QuestionnaireFragment.Listene
 
         setContentView(layoutResId)
 
+        user = intent.getParcelableExtra(USER) ?: throw Throwable("User cannot be null")
+        questionnaire =
+            intent.getParcelableExtra(DATA) ?: throw Throwable("Questionnaire cannot be null")
+
         if (savedInstanceState != null) {
             mFragment =
                 supportFragmentManager.findFragmentById(R.id.fragment_container) as QuestionnaireFragment
 
         } else {
             mFragment = QuestionnaireFragment.newInstance(
-                intent?.getParcelableArrayListExtra(DATA) ?: throw Throwable("List cannot be null")
+                questionnaire
             )
 
             supportFragmentManager.beginTransaction()
@@ -41,9 +49,10 @@ class QuestionnaireActivity : AppCompatActivity(), QuestionnaireFragment.Listene
         mFragment.listener = this
     }
 
-    override fun onStopQuestioner(questions: ArrayList<Question>) {
+    override fun onStopQuestioner(questionnaire: Questionnaire) {
         Intent(this, ResultActivity::class.java).apply {
-            putParcelableArrayListExtra(DATA, questions)
+            putExtra(DATA, questionnaire)
+            putExtra(USER, user)
         }.run {
             startActivity(this)
         }

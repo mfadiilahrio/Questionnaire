@@ -4,6 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Category(
-    val name: String
+data class Questionnaire(
+    val name: String,
+    val questions: List<Question>
 ): Parcelable

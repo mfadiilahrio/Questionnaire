@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.adrena.prototype.medical.Constants
 import com.adrena.prototype.medical.R
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    var selectedGender = "male"
+    private var selectedGender = "male"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,32 +22,40 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         register.setOnClickListener {
-            Intent(this, QuestionnaireType::class.java).run {
-                putExtra(
-                    Constants.USER,
-                    User(
-                        name.text.toString(),
-                        selectedGender,
-                        age.text.toString().toIntOrNull(),
-                        birth_place.text.toString(),
-                        dob.text.toString(),
-                        address.text.toString(),
-                        weight.text.toString().toIntOrNull(),
-                        height.text.toString().toIntOrNull(),
-                        neck_circumference.text.toString().toIntOrNull()
+            if (name.text.isNotEmpty() && weight.text.isNotEmpty() && height.text.isNotEmpty()) {
+                Intent(this, QuestionnaireType::class.java).run {
+                    putExtra(
+                        Constants.USER,
+                        User(
+                            name.text.toString(),
+                            selectedGender,
+                            age.text.toString().toIntOrNull(),
+                            birth_place.text.toString(),
+                            dob.text.toString(),
+                            address.text.toString(),
+                            weight.text.toString().toIntOrNull(),
+                            height.text.toString().toIntOrNull(),
+                            neck_circumference.text.toString().toIntOrNull()
+                        )
                     )
-                )
-                startActivity(this)
+                    startActivity(this)
+                }
+            } else {
+                AlertDialog.Builder(this).apply {
+                    setTitle(getString(R.string.information))
+                    setMessage(getString(R.string.fill_column_message))
+                    setPositiveButton(getString(R.string.ok)) { _, _ ->
+
+                    }
+                }.show()
             }
         }
     }
 
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
-            // Is the button now checked?
             val checked = view.isChecked
 
-            // Check which radio button was clicked
             when (view.getId()) {
                 R.id.male ->
                     if (checked) {
@@ -59,8 +67,6 @@ class RegisterActivity : AppCompatActivity() {
                     }
             }
         }
-
-        Toast.makeText(this, selectedGender, Toast.LENGTH_SHORT).show()
     }
 
 

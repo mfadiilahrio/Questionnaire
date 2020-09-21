@@ -9,7 +9,7 @@ data class Question(
     val question: String,
     val category: Category,
     val options: List<Option>,
-    var createOption: Boolean = true
+    var number: Int = 0
 ): Parcelable {
 
     @Parcelize

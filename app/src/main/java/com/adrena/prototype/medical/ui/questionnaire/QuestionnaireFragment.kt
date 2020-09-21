@@ -9,37 +9,35 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrena.prototype.medical.Constants.Companion.DATA
 import com.adrena.prototype.medical.R
 import com.adrena.prototype.medical.data.model.Question
+import com.adrena.prototype.medical.data.model.Questionnaire
 
 class QuestionnaireFragment : Fragment(), ItemListener {
 
     private lateinit var listing: RecyclerView
     private lateinit var adapter: ListAdapter
 
-    private var questions: List<Question> = listOf()
+    private lateinit var questionnaire: Questionnaire
     var listener: Listener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.getParcelableArrayList<Question>(DATA)?.let {
-            questions = it.toList()
-        }
+        questionnaire = arguments?.getParcelable(DATA) ?: throw Throwable("Questionnaire cannot be null")
 
         adapter = ListAdapter(
-            questions
+            questionnaire.questions
         )
 
         adapter.listener = this
 
-        (activity as AppCompatActivity).supportActionBar?.title =
-            questions.first().category.questionnaire
+        (activity as AppCompatActivity).supportActionBar?.title = questionnaire.name
 
         retainInstance = true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_done -> {
-            listener?.onStopQuestioner(ArrayList(adapter.list))
+            listener?.onStopQuestioner(Questionnaire(questionnaire.name, adapter.list))
             true
         }
         else -> super.onOptionsItemSelected(item)
@@ -75,13 +73,13 @@ class QuestionnaireFragment : Fragment(), ItemListener {
 
     companion object {
         fun newInstance(
-            questions: ArrayList<Question>?
+            questionnaire: Questionnaire
         ): QuestionnaireFragment {
             val fragment = QuestionnaireFragment()
 
             val args = Bundle()
 
-            args.putParcelableArrayList(DATA, questions)
+            args.putParcelable(DATA, questionnaire)
 
             fragment.arguments = args
 
@@ -90,7 +88,7 @@ class QuestionnaireFragment : Fragment(), ItemListener {
     }
 
     interface Listener {
-        fun onStopQuestioner(questions: ArrayList<Question>)
+        fun onStopQuestioner(questionnaire: Questionnaire)
     }
 
     override fun onClick(question: Question) {
@@ -98,13 +96,6 @@ class QuestionnaireFragment : Fragment(), ItemListener {
     }
 
     override fun onOptionClicked(question: Question, selectedOption: Question.Option) {
-        if (question.createOption) {
-            adapter.list.map {
-                it.createOption = false
-            }
-            adapter.notifyDataSetChanged()
-        }
-
         adapter.list.firstOrNull { it.id == question.id }?.let { q ->
             q.options.map { option ->
                 option.checked = option.answer == selectedOption.answer
