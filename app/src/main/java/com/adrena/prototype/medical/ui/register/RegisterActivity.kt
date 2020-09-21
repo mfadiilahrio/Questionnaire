@@ -24,6 +24,12 @@ class RegisterActivity : AppCompatActivity() {
         register.setOnClickListener {
             if (name.text.isNotEmpty() && weight.text.isNotEmpty() && height.text.isNotEmpty()) {
                 Intent(this, QuestionnaireType::class.java).run {
+
+                    val weight = weight.text.toString().toIntOrNull() ?: 0
+                    val height = height.text.toString().toIntOrNull() ?: 0
+                    val heightInMeter: Double = height/100.0
+                    val bmi: Double = weight / (heightInMeter * heightInMeter)
+
                     putExtra(
                         Constants.USER,
                         User(
@@ -33,9 +39,10 @@ class RegisterActivity : AppCompatActivity() {
                             birth_place.text.toString(),
                             dob.text.toString(),
                             address.text.toString(),
-                            weight.text.toString().toIntOrNull(),
-                            height.text.toString().toIntOrNull(),
-                            neck_circumference.text.toString().toIntOrNull()
+                            weight,
+                            height,
+                            neck_circumference.text.toString().toIntOrNull(),
+                            bmi
                         )
                     )
                     startActivity(this)

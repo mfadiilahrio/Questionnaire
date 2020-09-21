@@ -2,6 +2,7 @@ package com.adrena.prototype.medical.ui.questionnairetype
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.adrena.prototype.medical.Constants.Companion.DATA
 import com.adrena.prototype.medical.Constants.Companion.USER
@@ -55,13 +56,13 @@ class QuestionnaireType : AppCompatActivity() {
                         listOf(
                             Question.Option(
                                 "Sedikit lebih nyaring dari bunyi napas biasa (louder than breathing)",
-                                1
+                                0
                             ),
                             Question.Option("Keras seperti biasa", 0),
-                            Question.Option("Lebih nyaring dari bicara", 0),
+                            Question.Option("Lebih nyaring dari bicara", 1),
                             Question.Option(
                                 "Sangat keras dapat di dengar dari ruangan yang bersebelahan",
-                                0
+                                1
                             )
                         )
                     )
@@ -73,8 +74,8 @@ class QuestionnaireType : AppCompatActivity() {
                         "Berapa kali anda mendengkur ?",
                         category,
                         listOf(
-                            Question.Option("Hampir setiap minggu",0),
-                            Question.Option("3-4 kali seminggu", 0),
+                            Question.Option("Hampir setiap minggu",1),
+                            Question.Option("3-4 kali seminggu", 1),
                             Question.Option("1-2 kali seminggu", 0),
                             Question.Option("1-2 kali sebulan",0),
                             Question.Option("Tidak pernah atau hampir tidak pernah",0)
@@ -88,7 +89,7 @@ class QuestionnaireType : AppCompatActivity() {
                         "Apakah dengkuran anda mengganggu orang lain ?",
                         category,
                         listOf(
-                            Question.Option("Ya", 0),
+                            Question.Option("Ya", 1),
                             Question.Option("Tidak", 0),
                             Question.Option("Tidak tahu", 0)
                         )
@@ -101,8 +102,8 @@ class QuestionnaireType : AppCompatActivity() {
                         "Apakah ada orang yang mengatakan bahwa anda berhenti bernafas saat tidur ?",
                         category,
                         listOf(
-                            Question.Option("Hampir setiap minggu",0),
-                            Question.Option("3-4 kali seminggu", 0),
+                            Question.Option("Hampir setiap minggu",1),
+                            Question.Option("3-4 kali seminggu", 1),
                             Question.Option("1-2 kali seminggu", 0),
                             Question.Option("1-2 kali sebulan",0),
                             Question.Option("Tidak pernah atau hampir tidak pernah",0)
@@ -116,8 +117,8 @@ class QuestionnaireType : AppCompatActivity() {
                         "Berapa sering anda merasa lelah atau tidak fit setelah bangun tidur ?",
                         category2,
                         listOf(
-                            Question.Option("Hampir setiap minggu",0),
-                            Question.Option("3-4 kali seminggu", 0),
+                            Question.Option("Hampir setiap minggu",1),
+                            Question.Option("3-4 kali seminggu", 1),
                             Question.Option("1-2 kali seminggu", 0),
                             Question.Option("1-2 kali sebulan",0),
                             Question.Option("Tidak pernah atau hampir tidak pernah",0)
@@ -131,8 +132,8 @@ class QuestionnaireType : AppCompatActivity() {
                         "Pada saat beraktivitas, apakah anda merasa lelah dan tidak segar",
                         category2,
                         listOf(
-                            Question.Option("Hampir setiap minggu",0),
-                            Question.Option("3-4 kali seminggu", 0),
+                            Question.Option("Hampir setiap minggu",1),
+                            Question.Option("3-4 kali seminggu", 1),
                             Question.Option("1-2 kali seminggu", 0),
                             Question.Option("1-2 kali sebulan",0),
                             Question.Option("Tidak pernah atau hampir tidak pernah",0)
@@ -146,7 +147,7 @@ class QuestionnaireType : AppCompatActivity() {
                         "Apakah anda pernah terkantuk-kantuk atau tertidur saat mengemudi ?",
                         category2,
                         listOf(
-                            Question.Option("Ya", 0),
+                            Question.Option("Ya", 1),
                             Question.Option("Tidak", 0)
                         )
                     )
@@ -195,5 +196,16 @@ class QuestionnaireType : AppCompatActivity() {
                 startActivity(this)
             }
         }
+
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        android.R.id.home -> {
+            onBackPressed()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 }

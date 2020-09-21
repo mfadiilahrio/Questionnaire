@@ -13,5 +13,6 @@ data class User(
     val address: String?,
     val weight: Int?,
     val height: Int?,
-    val neckCircumference: Int?
+    val neckCircumference: Int?,
+    var bmi: Double
 ) : Parcelable

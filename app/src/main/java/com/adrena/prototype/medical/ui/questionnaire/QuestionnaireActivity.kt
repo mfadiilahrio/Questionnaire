@@ -1,7 +1,9 @@
 package com.adrena.prototype.medical.ui.questionnaire
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
@@ -17,6 +19,10 @@ class QuestionnaireActivity : AppCompatActivity(), QuestionnaireFragment.Listene
     private lateinit var mFragment: QuestionnaireFragment
     private lateinit var user: User
     private lateinit var questionnaire: Questionnaire
+
+    companion object {
+        const val RESULT_RC = 0x1
+    }
 
     private val layoutResId: Int
         @LayoutRes
@@ -47,6 +53,24 @@ class QuestionnaireActivity : AppCompatActivity(), QuestionnaireFragment.Listene
         }
 
         mFragment.listener = this
+
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        android.R.id.home -> {
+            onBackPressed()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 
     override fun onStopQuestioner(questionnaire: Questionnaire) {
@@ -54,7 +78,7 @@ class QuestionnaireActivity : AppCompatActivity(), QuestionnaireFragment.Listene
             putExtra(DATA, questionnaire)
             putExtra(USER, user)
         }.run {
-            startActivity(this)
+            startActivityForResult(this, RESULT_RC)
         }
     }
 }

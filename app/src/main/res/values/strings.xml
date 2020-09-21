@@ -29,4 +29,11 @@
     <string name="information">Informasi</string>
     <string name="fill_column_message">Mohon lengkapi kolom bertanda bintang !</string>
     <string name="ok">ok</string>
+    <string name="osa_risk">Resiko OSA</string>
+    <string name="name_x">Nama : %1$s</string>
+    <string name="weight_x_kg">Berat badan : %1$s kg</string>
+    <string name="height_x_m">Tinggi badan : %1$s m</string>
+    <string name="bmi_x">BMI : %.2f</string>
+    <string name="high">Tinggi</string>
+    <string name="low">Rendah</string>
 </resources>
