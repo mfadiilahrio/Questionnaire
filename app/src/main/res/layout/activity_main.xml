@@ -11,7 +11,7 @@
         tools:context=".MainActivity">
 
         <TextView
-            android:id="@+id/questionnaire_title"
+            android:id="@+id/tvQuestionnaireTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,23 +25,23 @@
             android:gravity="center_horizontal" />
 
         <Button
-            android:id="@+id/sleep_quality_questionnaire"
+            android:id="@+id/btnSleepQualityQuestionnaire"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/questionnaire_title"
-            app:layout_constraintStart_toStartOf="@id/questionnaire_title"
-            app:layout_constraintEnd_toEndOf="@id/questionnaire_title"
+            app:layout_constraintTop_toBottomOf="@id/tvQuestionnaireTitle"
+            app:layout_constraintStart_toStartOf="@id/tvQuestionnaireTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvQuestionnaireTitle"
             android:layout_marginTop="@dimen/view_item_margin"
             android:layout_marginHorizontal="@dimen/view_item_margin"
             android:text="@string/sleep_quality_questionnaire"/>
 
         <Button
-            android:id="@+id/berlin_questionnaire"
+            android:id="@+id/btnBerlinQuestionnaire"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/sleep_quality_questionnaire"
-            app:layout_constraintStart_toStartOf="@id/questionnaire_title"
-            app:layout_constraintEnd_toEndOf="@id/questionnaire_title"
+            app:layout_constraintTop_toBottomOf="@id/btnSleepQualityQuestionnaire"
+            app:layout_constraintStart_toStartOf="@id/tvQuestionnaireTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvQuestionnaireTitle"
             android:layout_marginTop="@dimen/view_item_margin"
             android:layout_marginHorizontal="@dimen/view_item_margin"
             android:text="@string/berlin_questionnaire"/>

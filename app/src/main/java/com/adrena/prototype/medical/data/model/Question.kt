@@ -7,9 +7,10 @@ import kotlinx.android.parcel.Parcelize
 data class Question(
     val id: Int,
     val question: String,
-    val category: Category,
+    val category: Category? = null,
     val options: List<Option>,
-    var number: Int = 0
+    var number: String = "0",
+    var answer: String? = null
 ): Parcelable {
 
     @Parcelize

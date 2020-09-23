@@ -18,7 +18,7 @@
     <string name="gender">Jenis kelamin</string>
     <string name="age">Umur</string>
     <string name="birth_place">Tempat lahir</string>
-    <string name="dob">Tanggal lahir (31/12/1998)</string>
+    <string name="dob">Tanggal lahir</string>
     <string name="address">Alamat</string>
     <string name="body_weight">Berat badan (kg) *</string>
     <string name="body_height">Tinggi badan (cm) *</string>
@@ -38,4 +38,11 @@
     <string name="low">Rendah</string>
     <string name="date_format">dd-MMMM-yyyy</string>
     <string name="complete_all_questionnaire">Mohon selesaikan semua kuesioner !</string>
+    <string name="category_1">Kategori 1</string>
+    <string name="category_2">Kategori 2</string>
+    <string name="category_3">Kategori 3</string>
+    <string name="answer">Jawab</string>
+    <string name="question_answer">Jawaban</string>
+    <string name="close">close</string>
+    <string name="number_x">Nomor %1$s.</string>
 </resources>

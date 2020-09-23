@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.adrena.prototype.medical.Constants
 import com.adrena.prototype.medical.R
 import com.adrena.prototype.medical.data.model.User
-import com.adrena.prototype.medical.ui.questionnairetype.QuestionnaireType
+import com.adrena.prototype.medical.ui.questionnairetype.QuestionnaireTypeActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
 
         register.setOnClickListener {
             if (name.text.isNotEmpty() && weight.text.isNotEmpty() && height.text.isNotEmpty()) {
-                Intent(this, QuestionnaireType::class.java).run {
+                Intent(this, QuestionnaireTypeActivity::class.java).run {
 
                     val weight = weight.text.toString().toIntOrNull() ?: 0
                     val height = height.text.toString().toIntOrNull() ?: 0

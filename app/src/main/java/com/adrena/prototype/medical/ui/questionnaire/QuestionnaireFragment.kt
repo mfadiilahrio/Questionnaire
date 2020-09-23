@@ -12,12 +12,15 @@ import com.adrena.prototype.medical.R
 import com.adrena.prototype.medical.data.model.Question
 import com.adrena.prototype.medical.data.model.Questionnaire
 
-class QuestionnaireFragment : Fragment(), ItemListener {
+class QuestionnaireFragment : Fragment(), ItemListener, QuestionActionSheet.Listener {
 
     private lateinit var listing: RecyclerView
     private lateinit var adapter: ListAdapter
 
     private lateinit var questionnaire: Questionnaire
+
+    private var mQuestionActionSheet: QuestionActionSheet? = null
+
     var listener: Listener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +42,7 @@ class QuestionnaireFragment : Fragment(), ItemListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_done -> {
             val notCompleted = adapter.list.any { q ->
-                q.options.none { it.checked }
+                (q.options.isNotEmpty() && q.options.none { it.checked }) || (q.options.isEmpty() && q.answer.isNullOrEmpty())
             }
 
             if (notCompleted) {
@@ -109,7 +112,13 @@ class QuestionnaireFragment : Fragment(), ItemListener {
     }
 
     override fun onClick(question: Question) {
-        //Do Nothing
+        mQuestionActionSheet = QuestionActionSheet.newInstance(
+            question
+        )
+        mQuestionActionSheet?.let { actionSheet ->
+            actionSheet.listener = this
+            actionSheet.show(childFragmentManager, actionSheet.toString())
+        }
     }
 
     override fun onOptionClicked(question: Question, selectedOption: Question.Option) {
@@ -117,6 +126,14 @@ class QuestionnaireFragment : Fragment(), ItemListener {
             q.options.map { option ->
                 option.checked = option.answer == selectedOption.answer
             }
+        }
+
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onAnswerDone(question: Question) {
+        adapter.list.firstOrNull { it.id == question.id }?.let { q ->
+            q.answer = question.answer
         }
 
         adapter.notifyDataSetChanged()

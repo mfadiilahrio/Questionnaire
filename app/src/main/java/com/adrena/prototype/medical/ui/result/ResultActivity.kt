@@ -2,7 +2,6 @@ package com.adrena.prototype.medical.ui.result
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.adrena.prototype.medical.Constants
@@ -30,37 +29,51 @@ class ResultActivity : AppCompatActivity() {
         height.text = getString(R.string.height_x_m, user.height.toString())
         bmi.text = getString(R.string.bmi_x, user.bmi)
 
-        val category1 = questionnaire.questions.filter { it.category.name == "Kategori 1" }
-        val category2 = questionnaire.questions.filter { it.category.name == "Kategori 2" }
-        val category3 = questionnaire.questions.filter { it.category.name == "Kategori 3" }
+        if (questionnaire.name == getString(R.string.berlin_questionnaire)) {
+            val category1 = questionnaire.questions.filter { it.category?.name == getString(R.string.category_1) }
+            val category2 = questionnaire.questions.filter { it.category?.name == getString(R.string.category_2) }
+            val category3 = questionnaire.questions.filter { it.category?.name == getString(R.string.category_3) }
 
-        val number10result: Boolean = category3.firstOrNull { it.id == 10 }?.let { q ->
-            q.options.any { option ->
-                option.answer.contains("YA", true) && option.checked
+            val number10result: Boolean = category3.firstOrNull { it.id == 10 }?.let { q ->
+                q.options.any { option ->
+                    option.answer.contains("YA", true) && option.checked
+                }
+            } ?: run {
+                false
             }
-        } ?: run {
-            false
-        }
 
-        val category1Result =
-            category1.flatMap { it.options.filter { option -> option.checked } }.map { it.point }.sum() > 1
-        val category2Result =
-            category2.flatMap { it.options.filter { option -> option.checked } }.map { it.point }.sum() > 1
-        val category3Result = user.bmi > 30 || number10result
+            val category1Result =
+                category1.flatMap { it.options.filter { option -> option.checked } }
+                    .map { it.point }.sum() > 1
+            val category2Result =
+                category2.flatMap { it.options.filter { option -> option.checked } }
+                    .map { it.point }.sum() > 1
+            val category3Result = user.bmi > 30 || number10result
 
-        val riskResult = listOf(
-            category1Result,
-            category2Result,
-            category3Result
-        )
+            val riskResult = listOf(
+                category1Result,
+                category2Result,
+                category3Result
+            )
 
 
-        if (riskResult.filter { it }.size > 1) {
-            osa_risk_result.text = getString(R.string.high)
-            osa_risk_result.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
-        } else {
-            osa_risk_result.text = getString(R.string.low)
-            osa_risk_result.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
+            if (riskResult.filter { it }.size > 1) {
+                osa_risk_result.text = getString(R.string.high)
+                osa_risk_result.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        android.R.color.holo_red_light
+                    )
+                )
+            } else {
+                osa_risk_result.text = getString(R.string.low)
+                osa_risk_result.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        android.R.color.holo_green_light
+                    )
+                )
+            }
         }
 
         done.setOnClickListener {

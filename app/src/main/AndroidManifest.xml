@@ -14,7 +14,7 @@
             android:name=".ui.register.RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.questionnairetype.QuestionnaireType"
+            android:name=".ui.questionnairetype.QuestionnaireTypeActivity"
             android:label="@string/questionnaire_type" />
         <activity android:name=".MainActivity">
             <intent-filter>
