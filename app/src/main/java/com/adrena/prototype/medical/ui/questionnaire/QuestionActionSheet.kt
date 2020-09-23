@@ -57,7 +57,6 @@ class QuestionActionSheet : BottomSheetDialogFragment() {
 
         mBtnAnswer.setOnClickListener {
             onAnswerDone()
-            dismiss()
         }
 
         return view
@@ -66,7 +65,7 @@ class QuestionActionSheet : BottomSheetDialogFragment() {
     private fun onAnswerDone() {
         mQuestion.answer = mEdtAnswer.editText?.text.toString()
         listener?.onAnswerDone(mQuestion)
-
+        dismiss()
     }
 
     companion object {
