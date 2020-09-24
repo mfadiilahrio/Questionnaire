@@ -1,6 +1,7 @@
 package com.adrena.prototype.medical.ui.questionnaire
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -40,8 +41,12 @@ class QuestionActionSheet : BottomSheetDialogFragment() {
 
         tvTitle.text = getString(R.string.number_x, mQuestion.number)
 
+        if (mQuestion.type == Question.Type.NUMBER) {
+            mEdtAnswer.editText?.inputType = InputType.TYPE_CLASS_NUMBER
+        }
         mTvQuestion.text = mQuestion.question
         mEdtAnswer.editText?.setText(mQuestion.answer)
+        mEdtAnswer.hint = mQuestion.hint
 
         ivClose.setOnClickListener {
             dismiss()

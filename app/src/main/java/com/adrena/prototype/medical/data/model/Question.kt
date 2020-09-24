@@ -10,7 +10,9 @@ data class Question(
     val category: Category? = null,
     val options: List<Option>,
     var number: String = "0",
-    var answer: String? = null
+    var answer: String? = null,
+    val type: Type,
+    val hint: String? = null
 ): Parcelable {
 
     @Parcelize
@@ -19,5 +21,19 @@ data class Question(
         val point: Int,
         var checked: Boolean = false
     ): Parcelable
+
+    @Parcelize
+    enum class Type(val value: String) : Parcelable {
+        OPTIONAL("optional"),
+        ESSAY("essay"),
+        NUMBER("number"),
+        TIME("time");
+
+        companion object {
+            fun fromString(value: String): Type? {
+                return values().firstOrNull { it.value == value }
+            }
+        }
+    }
 
 }

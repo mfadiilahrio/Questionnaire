@@ -1,5 +1,7 @@
 package com.adrena.prototype.medical.ui.questionnaire
 
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
@@ -11,6 +13,8 @@ import com.adrena.prototype.medical.Constants.Companion.DATA
 import com.adrena.prototype.medical.R
 import com.adrena.prototype.medical.data.model.Question
 import com.adrena.prototype.medical.data.model.Questionnaire
+import java.text.SimpleDateFormat
+import java.util.*
 
 class QuestionnaireFragment : Fragment(), ItemListener, QuestionActionSheet.Listener {
 
@@ -111,13 +115,41 @@ class QuestionnaireFragment : Fragment(), ItemListener, QuestionActionSheet.List
         fun onStopQuestioner(questionnaire: Questionnaire)
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onClick(question: Question) {
-        mQuestionActionSheet = QuestionActionSheet.newInstance(
-            question
-        )
-        mQuestionActionSheet?.let { actionSheet ->
-            actionSheet.listener = this
-            actionSheet.show(childFragmentManager, actionSheet.toString())
+        when(question.type) {
+            Question.Type.TIME -> {
+                val cal = Calendar.getInstance()
+
+                val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                    cal.set(Calendar.HOUR_OF_DAY, hour)
+                    cal.set(Calendar.MINUTE, minute)
+
+                    question.answer = SimpleDateFormat(getString(R.string.HH_mm_a)).format(
+                        cal.time
+                    )
+
+                    onAnswerDone(question)
+                }
+
+                TimePickerDialog(
+                    context!!,
+                    timeSetListener,
+                    cal.get(Calendar.HOUR_OF_DAY),
+                    cal.get(Calendar.MINUTE),
+                    true
+                ).show()
+            }
+            Question.Type.ESSAY, Question.Type.NUMBER -> {
+                mQuestionActionSheet = QuestionActionSheet.newInstance(
+                    question
+                )
+                mQuestionActionSheet?.let { actionSheet ->
+                    actionSheet.listener = this
+                    actionSheet.show(childFragmentManager, actionSheet.toString())
+                }
+            }
+            else -> {}
         }
     }
 

@@ -45,4 +45,6 @@
     <string name="question_answer">Jawaban</string>
     <string name="close">close</string>
     <string name="number_x">Nomor %1$s.</string>
+    <string name="HH_mm_a">HH:mm a</string>
+    <string name="skor">Skor</string>
 </resources>
