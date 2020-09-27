@@ -3,6 +3,7 @@ package com.adrena.prototype.medical.ui.result
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.adrena.prototype.medical.Constants
@@ -87,7 +88,7 @@ class ResultActivity : AppCompatActivity() {
                 .flatMap { it.options.filter { option -> option.checked } }
                 .map { it.point }.sum()
             val score3 =
-                questionnaire.questions.first { it.number == "4" }.answer?.toIntOrNull() ?: 0
+                questionnaire.questions.first { it.number == "4" }.answer?.toDoubleOrNull() ?: 1.0
             val sleep = questionnaire.questions.first { it.number == "1" }.answer
             val wakeUp = questionnaire.questions.first { it.number == "3" }.answer
             val score5 =
@@ -96,6 +97,8 @@ class ResultActivity : AppCompatActivity() {
                     .map { it.point }.sum()
 
             val longInBed = getLongInBed(sleep, wakeUp)
+
+            Log.e("sleepEfficiency", "score3 = $score3 / longInbed = $longInBed * 100")
             val sleepEfficiency = (score3 / longInBed) * 100
             val score7 = questionnaire.questions.filter { it.number == "7" || it.number == "8" }
                 .flatMap { it.options.filter { option -> option.checked } }
@@ -120,13 +123,13 @@ class ResultActivity : AppCompatActivity() {
                 }
             }
             val score3Total = when {
-                score3 > 7 -> {
+                score3 > 7.0 -> {
                     0
                 }
-                score3 in 6..7 -> {
+                score3 in 6.0..7.0 -> {
                     1
                 }
-                score3 == 5 -> {
+                score3 == 5.0 -> {
                     2
                 }
                 else -> {
@@ -134,13 +137,13 @@ class ResultActivity : AppCompatActivity() {
                 }
             }
             val score4Total = when {
-                sleepEfficiency > 85 -> {
+                sleepEfficiency > 85.0 -> {
                     0
                 }
-                sleepEfficiency in 75..84 -> {
+                sleepEfficiency in 75.0..84.0 -> {
                     1
                 }
-                sleepEfficiency in 65..74 -> {
+                sleepEfficiency in 65.0..74.0 -> {
                     2
                 }
                 else -> {
@@ -200,8 +203,8 @@ class ResultActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun getLongInBed(sleep: String?, wakeUp: String?): Int {
-        var longInBed = 0
+    private fun getLongInBed(sleep: String?, wakeUp: String?): Double {
+        var longInBed = 0.0
 
         safeLet(sleep, wakeUp) { s, w ->
             val simpleDateFormat = SimpleDateFormat("hh:mm a")
@@ -212,11 +215,11 @@ class ResultActivity : AppCompatActivity() {
             safeLet(date1, date2) { d1, d2 ->
                 val difference: Long = d2.time - d1.time
                 val days = (difference / (1000 * 60 * 60 * 24)).toInt()
-                var hours = ((difference - 1000 * 60 * 60 * 24 * days) / (1000 * 60 * 60)).toInt()
+                var hours = ((difference - 1000 * 60 * 60 * 24 * days) / (1000 * 60 * 60))
 //                val min =
 //                    (difference - 1000 * 60 * 60 * 24 * days - 1000 * 60 * 60 * hours).toInt() / (1000 * 60)
                 hours = if (hours < 0) -hours else hours
-                longInBed = hours
+                longInBed = hours.toDouble()
             }
         }
 
