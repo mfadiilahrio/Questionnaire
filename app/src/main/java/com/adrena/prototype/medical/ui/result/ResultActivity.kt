@@ -3,7 +3,6 @@ package com.adrena.prototype.medical.ui.result
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.adrena.prototype.medical.Constants
@@ -98,7 +97,6 @@ class ResultActivity : AppCompatActivity() {
 
             val longInBed = getLongInBed(sleep, wakeUp)
 
-            Log.e("sleepEfficiency", "score3 = $score3 / longInbed = $longInBed * 100")
             val sleepEfficiency = (score3 / longInBed) * 100
             val score7 = questionnaire.questions.filter { it.number == "7" || it.number == "8" }
                 .flatMap { it.options.filter { option -> option.checked } }
