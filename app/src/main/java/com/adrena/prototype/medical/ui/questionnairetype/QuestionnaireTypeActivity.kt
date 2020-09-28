@@ -118,7 +118,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5a",
             type = Question.Type.OPTIONAL
@@ -131,7 +131,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5b",
             type = Question.Type.OPTIONAL
@@ -144,7 +144,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5c",
             type = Question.Type.OPTIONAL
@@ -157,7 +157,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5d",
             type = Question.Type.OPTIONAL
@@ -170,7 +170,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5e",
             type = Question.Type.OPTIONAL
@@ -183,7 +183,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5f",
             type = Question.Type.OPTIONAL
@@ -196,7 +196,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5g",
             type = Question.Type.OPTIONAL
@@ -209,7 +209,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5h",
             type = Question.Type.OPTIONAL
@@ -222,7 +222,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5i",
             type = Question.Type.OPTIONAL
@@ -235,7 +235,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "5j",
             type = Question.Type.OPTIONAL
@@ -248,7 +248,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "6",
             type = Question.Type.OPTIONAL
@@ -261,7 +261,7 @@ class QuestionnaireTypeActivity : AppCompatActivity() {
                 Question.Option("Tidak pernah",0),
                 Question.Option("1 x seminggu", 1),
                 Question.Option("2 x seminggu", 2),
-                Question.Option(">3 x kali sebulan",3)
+                Question.Option(">3 x kali seminggu",3)
             ),
             number = "7",
             type = Question.Type.OPTIONAL

@@ -83,6 +83,9 @@ class ResultActivity : AppCompatActivity() {
         } else {
             tvResultTitle.text = getString(R.string.skor)
 
+            val score1 = questionnaire.questions.filter { it.number == "9a" || it.number == "9b" }
+                .flatMap { it.options.filter { option -> option.checked } }
+                .map { it.point }
             val score2 = questionnaire.questions.filter { it.number == "2" || it.number == "5a" }
                 .flatMap { it.options.filter { option -> option.checked } }
                 .map { it.point }.sum()
@@ -102,10 +105,8 @@ class ResultActivity : AppCompatActivity() {
                 .flatMap { it.options.filter { option -> option.checked } }
                 .map { it.point }.sum()
 
-            val score1total =
-                questionnaire.questions.filter { it.number == "9a" || it.number == "9b" }
-                    .flatMap { it.options.filter { option -> option.checked } }
-                    .map { it.point }.sum()
+            val score1total = score1.sum() / score1.size
+
             val score2Total = when {
                 score2 <= 0 -> {
                     0
