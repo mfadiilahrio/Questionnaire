@@ -3,6 +3,7 @@ package com.adrena.prototype.medical.ui.result
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.adrena.prototype.medical.Constants
@@ -33,6 +34,8 @@ class ResultActivity : AppCompatActivity() {
         tvBmi.text = getString(R.string.bmi_x, user.bmi)
 
         if (questionnaire.name == getString(R.string.berlin_questionnaire)) {
+            tvScore.visibility = View.GONE
+
             val category1 =
                 questionnaire.questions.filter { it.category?.name == getString(R.string.category_1) }
             val category2 =
@@ -64,23 +67,12 @@ class ResultActivity : AppCompatActivity() {
 
 
             if (riskResult.filter { it }.size > 1) {
-                tvResult.text = getString(R.string.high)
-                tvResult.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        android.R.color.holo_red_light
-                    )
-                )
+                setResult(getString(R.string.high), false)
             } else {
-                tvResult.text = getString(R.string.low)
-                tvResult.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        android.R.color.holo_green_light
-                    )
-                )
+                setResult(getString(R.string.low), true)
             }
         } else {
+            tvScore.visibility = View.VISIBLE
             tvResultTitle.text = getString(R.string.skor)
 
             val score1 = questionnaire.questions.filter { it.number == "9a" || it.number == "9b" }
@@ -191,14 +183,32 @@ class ResultActivity : AppCompatActivity() {
                 score7Total
             ).sum()
 
-            tvResult.textSize = 42f
-            tvResult.text = scoreTotal.toString()
+            tvScore.text = scoreTotal.toString()
+            if (scoreTotal <= 5) {
+                setResult(getString(R.string.good_sleep_quality), true)
+            } else {
+                setResult(getString(R.string.bad_sleep_quality), false)
+            }
         }
 
         btnDone.setOnClickListener {
             setResult(Activity.RESULT_OK)
             finish()
         }
+    }
+
+    private fun setResult(result: String, isGood: Boolean) {
+        tvResult.text = result
+        val colorIndicator = ContextCompat.getColor(
+            this,
+            if (isGood) android.R.color.holo_green_dark else android.R.color.holo_red_dark
+        )
+        tvScore.setTextColor(
+            colorIndicator
+        )
+        tvResult.setTextColor(
+            colorIndicator
+        )
     }
 
     @SuppressLint("SimpleDateFormat")

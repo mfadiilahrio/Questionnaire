@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pemeriksaan</string>
+    <string name="app_name">Kuesioner Kepuasan Tidur</string>
     <string name="sleep_quality_questionnaire">Kuesioner Kualitas Tidur (PSQI)</string>
     <string name="berlin_questionnaire">Kuesioner Berlin</string>
     <string name="choose_questionnaire">Pilih jenis kuesioner</string>
@@ -47,4 +47,6 @@
     <string name="number_x">Nomor %1$s.</string>
     <string name="HH_mm_a">HH:mm a</string>
     <string name="skor">Skor</string>
+    <string name="good_sleep_quality">Kualitas tidur baik</string>
+    <string name="bad_sleep_quality">Kualitas tidur buruk</string>
 </resources>
